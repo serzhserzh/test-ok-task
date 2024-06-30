@@ -1,0 +1,12 @@
+            - name: Altostra Push and Deploy
+  # You may pin to the exact commit or the version.
+  # uses: altostra/push-deploy-action@923558ba203fb0f856581e2b7f3eecd5887dfcbf
+  uses: altostra/push-deploy-action@v1.0.0
+  with:
+    # The environment to which to deploy
+    env-name: 
+    # The instance name to deploy
+    instance-name: 
+    # Optional. The image name (i.e: 1.0.0, v2.4.1, alpha, dev, test, ...)
+    image-name: # optional
+          
