@@ -5,35 +5,38 @@ import "./styles/app.scss";
 const sizes = ["28px", "36px", "56px"];
 const styledsButton = [
   {
+    id: "1",
     color: "white",
     backgroundColor: "#FF7700",
   },
   {
+    id: "2",
     color: "black",
     backgroundColor: "#8366561f",
   },
 ];
 const sizesCount = [
-  { minSize: "24px", horizontalPadding: "6px", fontSize: "15px" },
-  { minSize: "20px", horizontalPadding: "4px", fontSize: "13px" },
-  { minSize: "16px", horizontalPadding: "4px", fontSize: "11px" },
-  { size: "12px", fontSize: "0px" },
-  { size: "8px", fontSize: "0px" },
+  { id: "1", minSize: "24px", horizontalPadding: "6px", fontSize: "15px" },
+  { id: "2", minSize: "20px", horizontalPadding: "4px", fontSize: "13px" },
+  { id: "3", minSize: "16px", horizontalPadding: "4px", fontSize: "11px" },
+  { id: "4", size: "12px", fontSize: "0px" },
+  { id: "5", size: "8px", fontSize: "0px" },
 ];
 const statedBtn = ["enable", "pressed", "loading", "disabled"];
 const nameStyledsCount = ["primary", "secondary"];
 const styledsCount = [
-  { color: "white", backgroundColor: "#FFFFFF1F" },
-  { color: "black", backgroundColor: "#8366561F" },
+  { id: "1", color: "white", backgroundColor: "#FFFFFF1F" },
+  { id: "2", color: "black", backgroundColor: "#8366561F" },
 ];
 function App() {
-  const [size, setSize] = useState("36px");
+  const [size, setSize] = useState("56px");
   const [counter, setCounter] = useState(true);
-  const [focused, setFocused] = useState(true);
+  const [focused, setFocused] = useState(false);
   const [stated, setStated] = useState("enable");
   const [styled, setStyled] = useState({
-    color: "black",
-    backgroundColor: "#8366561f",
+    id: "1",
+    color: "white",
+    backgroundColor: "#FF7700",
   });
   const changeSize = (arg: string) => {
     setSize(arg);
@@ -47,20 +50,26 @@ function App() {
   const changeStated = useCallback((arg: string) => {
     setStated(arg);
   }, []);
-  const changeStyled = (arg: { color: string; backgroundColor: string }) => {
+  const changeStyled = (arg: {
+    id: string;
+    color: string;
+    backgroundColor: string;
+  }) => {
     setStyled(arg);
   };
 
   const [sizeCount, setSizeCount] = useState<{
+    id: string;
     minSize?: string;
     horizontalPadding?: string;
     size?: string;
     fontSize: string;
-  }>({ minSize: "24px", horizontalPadding: "6px", fontSize: "15px" });
+  }>({ id: "1", minSize: "24px", horizontalPadding: "6px", fontSize: "15px" });
 
   const [styledCount, setStyledCount] = useState({
-    color: "black",
-    backgroundColor: "#8366561f",
+    id: "1",
+    color: "white",
+    backgroundColor: "#FFFFFF1F",
   });
 
   const [pulse, setPulse] = useState(true);
@@ -70,6 +79,7 @@ function App() {
   };
 
   const changeSizeCount = (arg: {
+    id: string;
     minSize?: string;
     horizontalPadding?: string;
     size?: string;
@@ -78,6 +88,7 @@ function App() {
     setSizeCount(arg);
   };
   const changeStyledCount = (arg: {
+    id: string;
     color: string;
     backgroundColor: string;
   }) => {
@@ -109,6 +120,7 @@ function App() {
               {styledsButton.map((item, i) => {
                 return (
                   <button
+                    className={item.id == styled.id ? "active" : ""}
                     onClick={() => {
                       changeStyled(item);
                     }}
@@ -132,6 +144,7 @@ function App() {
               {sizes.map((item) => {
                 return (
                   <button
+                    className={item == size ? "active" : ""}
                     onClick={() => {
                       changeSize(item);
                     }}
@@ -150,6 +163,7 @@ function App() {
             <h3>Отвечает за отображение иконки справа от label</h3>
             <div className="btn__list">
               <button
+                className={counter == false ? "active" : ""}
                 onClick={() => {
                   changeCounter(false);
                 }}
@@ -157,6 +171,7 @@ function App() {
                 false
               </button>
               <button
+                className={counter == true ? "active" : ""}
                 onClick={() => {
                   changeCounter(true);
                 }}
@@ -173,6 +188,7 @@ function App() {
             <h3>Отвечает за отображение фокуса</h3>
             <div className="btn__list">
               <button
+                className={focused == false ? "active" : ""}
                 onClick={() => {
                   changeFocused(false);
                 }}
@@ -180,6 +196,7 @@ function App() {
                 false
               </button>
               <button
+                className={focused == true ? "active" : ""}
                 onClick={() => {
                   changeFocused(true);
                 }}
@@ -201,6 +218,7 @@ function App() {
             <div className="btn__list">
               {statedBtn.map((item) => (
                 <button
+                  className={item == stated ? "active" : ""}
                   onClick={() => {
                     changeStated(item);
                   }}
@@ -229,6 +247,7 @@ function App() {
               {sizesCount.map((item) => {
                 return (
                   <button
+                    className={item.id === sizeCount.id ? "active" : ""}
                     onClick={() => {
                       changeSizeCount({ ...item });
                     }}
@@ -249,6 +268,7 @@ function App() {
               {styledsCount.map((item, index) => {
                 return (
                   <button
+                    className={item.id == styledCount.id ? "active" : ""}
                     onClick={() => {
                       changeStyledCount(item);
                     }}
@@ -267,6 +287,7 @@ function App() {
             <h3>Отвечает за включение анимации pulse</h3>
             <div className="btn__list">
               <button
+                className={pulse == false ? "active" : ""}
                 onClick={() => {
                   changePulse(false);
                 }}
@@ -274,6 +295,7 @@ function App() {
                 false
               </button>
               <button
+                className={pulse == true ? "active" : ""}
                 onClick={() => {
                   changePulse(true);
                 }}
