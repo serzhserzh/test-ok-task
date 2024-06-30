@@ -9,7 +9,7 @@ const MyLoader: React.FC<{
   <ContentLoader
     style={{ position: "absolute", left: "-5px", opacity: "0.12" }}
     speed={1}
-    width={175}
+    width={280}
     height={50}
     foregroundColor={styled.color}
     backgroundColor={styled.backgroundColor}
