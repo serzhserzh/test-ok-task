@@ -1,5 +1,10 @@
 import styles from "../styles/ui/Counter.module.scss";
 
+const styledsCount = [
+  { color: "white", backgroundColor: "#FFFFFF1F" },
+  { color: "black", backgroundColor: "#8366561F" },
+];
+
 const Count: React.FC<{
   stated: string;
   sizeCount: {
@@ -20,7 +25,13 @@ const Count: React.FC<{
     return count < 99 ? (
       <div
         style={{
-          ...styledCount,
+          ...(styledCount.color === "black"
+            ? {
+                ...styledsCount[1],
+              }
+            : {
+                ...styledsCount[0],
+              }),
           ...(sizeCount.size === undefined
             ? {
                 fontSize: sizeCount.fontSize,
@@ -66,7 +77,13 @@ const Count: React.FC<{
     ) : (
       <div
         style={{
-          ...styledCount,
+          ...(styledCount.color === "black"
+            ? {
+                ...styledsCount[1],
+              }
+            : {
+                ...styledsCount[0],
+              }),
           ...(sizeCount.size === undefined
             ? {
                 fontSize: sizeCount.fontSize,
@@ -87,7 +104,7 @@ const Count: React.FC<{
             : `${styles.liveIndicator}`
         }
       >
-        99+
+        {count}
         {sizeCount.size !== undefined && pulse && (
           <>
             <div

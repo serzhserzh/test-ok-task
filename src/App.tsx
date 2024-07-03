@@ -24,10 +24,6 @@ const sizesCount = [
 ];
 const statedBtn = ["enable", "pressed", "loading", "disabled"];
 const nameStyledsCount = ["primary", "secondary"];
-const styledsCount = [
-  { id: "1", color: "white", backgroundColor: "#FFFFFF1F" },
-  { id: "2", color: "black", backgroundColor: "#8366561F" },
-];
 function App() {
   const [size, setSize] = useState("56px");
   const [counter, setCounter] = useState(true);
@@ -66,12 +62,6 @@ function App() {
     fontSize: string;
   }>({ id: "1", minSize: "24px", horizontalPadding: "6px", fontSize: "15px" });
 
-  const [styledCount, setStyledCount] = useState({
-    id: "1",
-    color: "white",
-    backgroundColor: "#FFFFFF1F",
-  });
-
   const [pulse, setPulse] = useState(true);
 
   const changePulse = (arg: boolean) => {
@@ -87,13 +77,6 @@ function App() {
   }) => {
     setSizeCount(arg);
   };
-  const changeStyledCount = (arg: {
-    id: string;
-    color: string;
-    backgroundColor: string;
-  }) => {
-    setStyledCount(arg);
-  };
   const [textBtn, setTextBtn] = useState("Что сделать");
   const [textCount, setTextCount] = useState(1);
   const changeTextCount = (arg: string) => {
@@ -104,10 +87,6 @@ function App() {
       <div className="checkList">
         <h1 style={{ textAlign: "center", fontFamily: '"Exo 2", sans-serif' }}>
           Параметры
-        </h1>
-        <h1>
-          <br />
-          Стилизация кнопки
         </h1>
         {/* STYLED BUTTON*/}
         <div className="checkList__btns">
@@ -230,11 +209,6 @@ function App() {
           </div>
         </div>
 
-        <h1>
-          <br />
-          Стилизация счетчика
-          <br />
-        </h1>
         {/* SIZE count */}
         <div className="checkList__btns">
           <h2>size count</h2>
@@ -253,27 +227,6 @@ function App() {
                     }}
                   >
                     {item?.minSize || item.size}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        {/* styled count */}
-        <div className="checkList__btns">
-          <h2>style count</h2>
-          <div className="checkList__btns--info">
-            <h3>Отвечает за отображение иконки справа от label</h3>
-            <div className="btn__list">
-              {styledsCount.map((item, index) => {
-                return (
-                  <button
-                    className={item.id == styledCount.id ? "active" : ""}
-                    onClick={() => {
-                      changeStyledCount(item);
-                    }}
-                  >
-                    {nameStyledsCount[index]}
                   </button>
                 );
               })}
@@ -335,7 +288,7 @@ function App() {
           setStated={changeStated}
           styled={styled}
           sizeCount={sizeCount}
-          styledCount={styledCount}
+          styledCount={styled}
           pulse={pulse}
           textBtn={textBtn}
           textCount={textCount}
